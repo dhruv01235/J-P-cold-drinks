@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J P Cold Drinks</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 2px solid #22c55e;
+}
+
+header h1 {
+  margin: 0;
+  color: #22c55e;
+}
+
+header p {
+  color: #94a3b8;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 15px;
+  padding: 15px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  background: #22c55e;
+  border: none;
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input {
+  width: 60px;
+  padding: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.cart {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #020617;
+  padding: 10px;
+  border-top: 2px solid #22c55e;
+}
+
+.info {
+  text-align: center;
+  padding: 15px;
+  color: #cbd5f5;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🥤 J P Cold Drinks</h1>
+<p>Snacks | Juice | Soft Drinks | Energy Drinks</p>
+<p>🕙 Open Daily: 10:00 AM – 10:30 PM</p>
+</header>
+
+<div class="container">
+
+<!-- PRODUCT TEMPLATE -->
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Thumbs_Up_India.jpg">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Thumbs Up 750ml</h3>
+<p>₹36 / bottle | ₹864 / pack (24)</p>
+<input type="number" id="thumbsup" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sprite_Logo.svg">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Sprite 750ml</h3>
+<p>₹37 / bottle | ₹888 / pack (24)</p>
+<input type="number" id="sprite" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Fanta_logo.svg">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Fanta 750ml</h3>
+<p>₹37 / bottle | ₹888 / pack (24)</p>
+<input type="number" id="fanta" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Limca_logo.png">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Limca 750ml</h3>
+<p>₹37 / bottle | ₹888 / pack (24)</p>
+<input type="number" id="limca" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Kinley_Water.jpg">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Kinley Water 1L</h3>
+<p>₹16 / bottle | ₹240 / pack (15)</p>
+<input type="number" id="water1" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Kinley_Water.jpg">
+<style>
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+<h3>Kinley Water 2L</h3>
+<p>₹25 / bottle | ₹375 / pack (15)</p>
+<input type="number" id="water2" value="0" min="0">
+<button onclick="updateCart()">Add</button>
+</div>
+
+</div>
+
+<div class="cart">
+<p id="summary">Cart is empty</p>
+<h3 id="total">Total: ₹0</h3>
+
+<button onclick="orderWhatsApp()">Order on WhatsApp</button>
+<button onclick="orderSMS()">Order via SMS</button>
+</div>
+
+<div class="info">
+📍 Mahatma Gandhi Rd, opp. Bhagwan Talkies, Agra  
+📞 8755170601  
+</div>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.268529226053!2d78.00181317549217!3d27.210717776470766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974775b084ba1ed%3A0x702ec63eab00b2d6!2sJ.P.%20Cold%20Drink!5e0!3m2!1sen!2sin!4v1776469685863!5m2!1sen!2sin"
+height="500" width="100%" style="border:0;"></iframe>
+
+<script>
+
+let prices = {
+  thumbsup: 36,
+  sprite: 37,
+  fanta: 37,
+  limca: 37,
+  water1: 16,
+  water2: 25
+};
+
+let names = {
+  thumbsup: "Thumbs Up 750ml",
+  sprite: "Sprite 750ml",
+  fanta: "Fanta 750ml",
+  limca: "Limca 750ml",
+  water1: "Kinley Water 1L",
+  water2: "Kinley Water 2L"
+};
+
+function updateCart() {
+  let summary = "";
+  let total = 0;
+
+  for (let item in prices) {
+    let qty = document.getElementById(item).value;
+    if (qty > 0) {
+      let itemTotal = qty * prices[item];
+      summary += names[item] + " x" + qty + " = ₹" + itemTotal + "\\n";
+      total += itemTotal;
+    }
+  }
+
+  document.getElementById("summary").innerText = summary || "Cart is empty";
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function orderWhatsApp() {
+  let text = document.getElementById("summary").innerText;
+  let total = document.getElementById("total").innerText;
+
+  let message = "J P Cold Drinks Order:\\n\\n" + text + "\\n" + total;
+
+  let url = "https://wa.me/918755170601?text=" + encodeURIComponent(message);
+  window.open(url);
+}
+
+function orderSMS() {
+  let text = document.getElementById("summary").innerText;
+  let total = document.getElementById("total").innerText;
+
+  let message = "Order:\\n" + text + total;
+
+  let url = "sms:+918755170601?body=" + encodeURIComponent(message);
+  window.open(url);
+}
+
+</script>
+<!-- ADMIN BUTTON -->
+<button onclick="openAdmin()" style="
+position:sticky;
+top:10px;
+left:10px;
+right:100px;
+background:#d8690f;
+color:white;
+padding:8px 12px;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,0.3);
+">
+⚙ Admin
+</button>
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;color:white;padding:20px;overflow:auto;">
+
+<h2>Admin Panel</h2>
+
+<label>Thumbs Up Price</label>
+<input type="number" id="admin_thumbsup"><br><br>
+
+<label>Sprite Price</label>
+<input type="number" id="admin_sprite"><br><br>
+
+<label>Fanta Price</label>
+<input type="number" id="admin_fanta"><br><br>
+
+<label>Limca Price</label>
+<input type="number" id="admin_limca"><br><br>
+
+<label>Water 1L Price</label>
+<input type="number" id="admin_water1"><br><br>
+
+<label>Water 2L Price</label>
+<input type="number" id="admin_water2"><br><br>
+
+<button onclick="savePrices()">Save</button>
+<button onclick="closeAdmin()">Close</button>
+
+</div>
+
+<script>
+
+function openAdmin(){
+  let pass = prompt("Enter Admin Password:");
+  if(pass === "admin123"){
+    document.getElementById("adminPanel").style.display = "block";
+
+    document.getElementById("admin_thumbsup").value = prices.thumbsup;
+    document.getElementById("admin_sprite").value = prices.sprite;
+    document.getElementById("admin_fanta").value = prices.fanta;
+    document.getElementById("admin_limca").value = prices.limca;
+    document.getElementById("admin_water1").value = prices.water1;
+    document.getElementById("admin_water2").value = prices.water2;
+  } else {
+    alert("Wrong Password");
+  }
+}
+
+function closeAdmin(){
+  document.getElementById("adminPanel").style.display = "none";
+}
+
+function savePrices(){
+  prices.thumbsup = document.getElementById("admin_thumbsup").value;
+  prices.sprite = document.getElementById("admin_sprite").value;
+  prices.fanta = document.getElementById("admin_fanta").value;
+  prices.limca = document.getElementById("admin_limca").value;
+  prices.water1 = document.getElementById("admin_water1").value;
+  prices.water2 = document.getElementById("admin_water2").value;
+
+  localStorage.setItem("shopPrices", JSON.stringify(prices));
+
+  alert("Prices Updated!");
+  closeAdmin();
+}
+
+window.onload = function(){
+  let saved = localStorage.getItem("shopPrices");
+  if(saved){
+    prices = JSON.parse(saved);
+  }
+}
+
+</script>
+</body>
+</html>
